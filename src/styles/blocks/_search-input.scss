@@ -1,0 +1,22 @@
+.search-input {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 16px;
+	position: relative;
+	width: 100%;
+	max-width: 276px;
+	padding: 8px 16px;
+	border-radius: var(--border-radius-large);
+	background-color: var(--color-gray);
+	color: var(--text-color-gray);
+
+	&__icon {
+		@include square(24px);
+		flex-shrink: 0;
+	}
+
+	&__field {
+		width: 100%;
+	}
+}

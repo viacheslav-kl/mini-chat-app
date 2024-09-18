@@ -1,0 +1,61 @@
+.chat-item {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 16px;
+	padding: 12px 16px;
+	cursor: pointer;
+
+	@include hover {
+		background-color: var(--color-gray);
+	}
+
+	&__avatar {
+		@include square(48px);
+		flex-shrink: 0;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		row-gap: 4px;
+		width: 100%;
+	}
+
+	&__header,
+	&__body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__name {
+		display: flex;
+		align-items: center;
+		column-gap: 4px;
+		font-weight: 600;
+	}
+
+	&__time {
+		font-size: 12px;
+		color: var(--text-color-gray);
+	}
+
+	&__message {
+		font-size: 14px;
+		color: var(--text-color-gray);
+	}
+
+	&__new-messages {
+		@include square(18px);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--color-accent);
+		border-radius: 50%;
+		color: var(--color-light);
+		font-size: 12px;
+		text-align: center;
+	}
+}

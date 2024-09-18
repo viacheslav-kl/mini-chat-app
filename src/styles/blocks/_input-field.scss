@@ -1,0 +1,10 @@
+.input-field {
+	background: transparent;
+	outline: none;
+	border: 0;
+	color: var(--text-color-black);
+
+	::placeholder {
+		color: var(--text-color-gray);
+	}
+}

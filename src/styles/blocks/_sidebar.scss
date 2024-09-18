@@ -1,0 +1,53 @@
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	width: 364px;
+	padding: 8px 0px;
+	transition: var(--transition-duration);
+	border-right: var(--border);
+
+	@include mobile {
+		flex: 100%;
+		flex-shrink: 0;
+	}
+
+	&--collapsed {
+		width: 80px;
+
+		@include mobile {
+			flex: 0px 0 1;
+		}
+
+		.sidebar__search,
+		.chat-item__content {
+			display: none;
+		}
+		.sidebar__header {
+			justify-content: center;
+		}
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: 16px;
+		padding: 0 16px;
+	}
+
+	&__toggle {
+		@include reset-button;
+		@include square(40px);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-color-gray);
+		cursor: pointer;
+
+		svg {
+			@include square(24px);
+		}
+	}
+}

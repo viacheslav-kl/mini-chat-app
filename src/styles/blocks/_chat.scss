@@ -1,0 +1,83 @@
+.chat {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-grow: 1;
+	background-color: var(--color-blue);
+
+	&__content {
+		padding: 10px 32px 24px;
+
+		@include mobile {
+			padding: 10px 16px 24px;
+		}
+	}
+
+	&__messages {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 16px;
+		padding-bottom: 16px;
+	}
+
+	&__message {
+		padding: 4px 12px;
+		max-width: 45%;
+		border-radius: var(--border-radius);
+		background-color: var(--color-light);
+
+		span {
+			font-size: 12px;
+			width: 100%;
+			display: inline-block;
+			text-align: right;
+		}
+
+		&--output {
+			background-color: var(--color-accent);
+			align-self: flex-end;
+			span {
+				color: var(--color-light);
+			}
+		}
+
+		&--input {
+			align-self: flex-start;
+			span {
+				color: inherit;
+			}
+		}
+	}
+
+	&__input {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		column-gap: 16px;
+		padding: 16px;
+		background-color: var(--color-light);
+		border-radius: var(--border-radius);
+
+		&-field {
+			background: transparent;
+			border: 0;
+			outline: none;
+			width: 100%;
+			line-height: 20px;
+
+			::placeholder {
+				color: var(--text-color-gray);
+			}
+		}
+
+		&-emoji,
+		&-button {
+			@include reset-button;
+			@include square(24px);
+
+			cursor: pointer;
+			line-height: 1;
+		}
+	}
+}
