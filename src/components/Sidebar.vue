@@ -1,7 +1,7 @@
 <template>
-	<aside class="sidebar sidebar--collapsed">
+	<aside :class="['sidebar', { 'sidebar--collapsed': collapsed }]">
 		<header class="sidebar__header">
-			<button class="sidebar__toggle">
+			<button class="sidebar__toggle" @click="toggleSidebar">
 				<svg
 					width="24"
 					height="24"
@@ -30,6 +30,18 @@ export default {
 	components: {
 		ChatItem,
 		SearchInput,
+	},
+	props: {
+		collapsed: Boolean,
+	},
+	setup(props, { emit }) {
+		const toggleSidebar = () => {
+			emit('toggleChatPanel')
+		}
+
+		return {
+			toggleSidebar,
+		}
 	},
 }
 </script>
