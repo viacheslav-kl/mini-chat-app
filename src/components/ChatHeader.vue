@@ -56,6 +56,10 @@
 	</header>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+	title: String,
+})
+</script>
 
 <style scoped lang="scss"></style>
