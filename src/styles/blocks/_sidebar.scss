@@ -6,6 +6,7 @@
 	padding: 8px 0px;
 	transition: var(--transition-duration);
 	border-right: var(--border);
+	overflow-y: auto;
 
 	@include mobile {
 		flex: 100%;
