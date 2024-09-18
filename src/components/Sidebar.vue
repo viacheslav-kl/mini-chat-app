@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue'
 import ChatItem from './ChatItem.vue'
 import SearchInput from './SearchInput.vue'
 export default {
