@@ -2,11 +2,13 @@
 	<header class="chat-header">
 		<div class="chat-header__body">
 			<div class="chat-header__avatar">
-				<img src="/src/assets/images/Avatar-test.png" alt="" />
+				<img :src="selectedChat.avatar" alt="" />
 			</div>
 			<div class="chat-header__user">
-				<span class="chat-header__user-name">Чат 1</span>
-				<span class="chat-header__user-appearance">в сети 5 мин назад</span>
+				<span class="chat-header__user-name">{{ selectedChat.name }}</span>
+				<span class="chat-header__user-appearance">{{
+					selectedChat.status
+				}}</span>
 			</div>
 		</div>
 		<ul class="chat-header__actions">
@@ -56,6 +58,15 @@
 	</header>
 </template>
 
-<script setup></script>
+<script>
+export default {
+	props: {
+		selectedChat: {
+			type: Object,
+			required: true,
+		},
+	},
+}
+</script>
 
 <style scoped lang="scss"></style>

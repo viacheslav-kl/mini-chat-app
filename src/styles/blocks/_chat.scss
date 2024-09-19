@@ -7,6 +7,7 @@
 
 	&__content {
 		padding: 10px 32px 24px;
+		justify-self: flex-end;
 		overflow-y: auto;
 		@include mobile {
 			padding: 10px 16px 24px;
@@ -23,9 +24,9 @@
 
 	&__message {
 		padding: 4px 12px;
-		max-width: 45%;
 		border-radius: var(--border-radius);
 		background-color: var(--color-light);
+		text-wrap: wrap;
 
 		span {
 			font-size: 12px;

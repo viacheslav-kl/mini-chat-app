@@ -1,7 +1,7 @@
 <template>
-	<aside class="sidebar sidebar--collapsed">
+	<aside :class="['sidebar', { 'sidebar--collapsed': collapsed }]">
 		<header class="sidebar__header">
-			<button class="sidebar__toggle">
+			<button class="sidebar__toggle" @click="toggleSidebar">
 				<svg
 					width="24"
 					height="24"
@@ -15,21 +15,63 @@
 					/>
 				</svg>
 			</button>
-			<SearchInput class="sidebar__search"></SearchInput>
+			<SearchInput
+				class="sidebar__search"
+				:placeholder="'Поиск'"
+				v-model="searchQuery"
+			></SearchInput>
 		</header>
 		<ul class="sidebar__list">
-			<ChatItem />
+			<ChatItem
+				:class="[
+					'chat-item',
+					{ 'chat-item--active': chat.id === selectedChatId },
+				]"
+				v-for="(chat, index) in filteredChats"
+				:key="index"
+				:chat="chat"
+				@click="selectChat(chat.id)"
+			/>
 		</ul>
 	</aside>
 </template>
 
 <script>
+import { computed, ref } from 'vue'
 import ChatItem from './ChatItem.vue'
 import SearchInput from './SearchInput.vue'
+
 export default {
-	components: {
-		ChatItem,
-		SearchInput,
+	components: { ChatItem, SearchInput },
+	props: {
+		collapsed: Boolean,
+		chats: Array,
+		selectedChatId: Number,
+	},
+	setup(props, { emit }) {
+		const searchQuery = ref('')
+
+		const filteredChats = computed(() => {
+			if (!searchQuery.value.trim()) return props.chats
+			return props.chats.filter(chat =>
+				chat.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+			)
+		})
+
+		const selectChat = chatId => {
+			emit('selectChat', chatId)
+		}
+
+		const toggleSidebar = () => {
+			emit('toggleChatPanel')
+		}
+
+		return {
+			searchQuery,
+			filteredChats,
+			toggleSidebar,
+			selectChat,
+		}
 	},
 }
 </script>

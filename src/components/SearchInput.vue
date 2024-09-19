@@ -16,11 +16,37 @@
 		<input
 			class="search-input__field input-field"
 			type="text"
-			placeholder="Поиск"
+			:placeholder="placeholder"
+			:value="modelValue"
+			@input="$emit('update:modelValue', $event.target.value)"
 		/>
 	</div>
 </template>
 
-<script></script>
+<script>
+import { ref } from 'vue'
+
+export default {
+	props: {
+		modelValue: {
+			type: String,
+			default: '',
+		},
+		placeholder: {
+			type: String,
+			default: 'Поиск',
+		},
+	},
+	setup(props, { emit }) {
+		const searchQuery = ref('')
+
+		const updateSearchQuery = event => {
+			emit('update:search', event.target.value)
+		}
+
+		return { searchQuery, updateSearchQuery }
+	},
+}
+</script>
 
 <style scoped lang="scss"></style>
