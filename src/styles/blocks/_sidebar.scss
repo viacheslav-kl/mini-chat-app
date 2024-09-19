@@ -17,7 +17,7 @@
 		width: 80px;
 
 		@include mobile {
-			flex: 0px 0 1;
+			flex: 80px 0 1;
 		}
 
 		.sidebar__search,
