@@ -33,6 +33,10 @@
 	</li>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+	chat: Object,
+})
+</script>
 
 <style scoped lang="scss"></style>

@@ -35,6 +35,7 @@
 import { computed, ref } from 'vue'
 import ChatItem from './ChatItem.vue'
 import SearchInput from './SearchInput.vue'
+
 export default {
 	components: { ChatItem, SearchInput },
 	props: {

@@ -1,10 +1,14 @@
 <template>
 	<div class="chat">
-		<ChatHeader />
+		<ChatHeader :title="currentChat.name" />
 		<div class="chat__content">
 			<div class="chat__messages">
-				<div class="chat__message chat__message--input">
-					<p class="chat__message-text">Чат был обновлен</p>
+				<div
+					class="chat__message chat__message--input"
+					v-for="(message, index) in messages"
+					:key="index"
+				>
+					<p class="chat__message-text">{{ message }}</p>
 					<span class="chat__message-time">18:16</span>
 				</div>
 			</div>
@@ -27,8 +31,9 @@
 					type="text"
 					class="chat__input-field"
 					placeholder="Напишите сообщение"
+					v-model="newMessage"
 				/>
-				<button class="chat__input-button">
+				<button class="chat__input-button" @click="sendMessage">
 					<svg
 						width="24"
 						height="24"
@@ -47,13 +52,19 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import ChatHeader from './ChatHeader.vue'
 
-export default {
-	components: {
-		ChatHeader,
-	},
+const currentChat = ref({ name: 'Чат 1' })
+const messages = ref(['Чат был обновлен'])
+const newMessage = ref('')
+
+function sendMessage() {
+	if (newMessage.value) {
+		messages.value.push(newMessage.value)
+		newMessage.value = ''
+	}
 }
 </script>
 
