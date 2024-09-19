@@ -23,9 +23,14 @@
 		</header>
 		<ul class="sidebar__list">
 			<ChatItem
+				:class="[
+					'chat-item',
+					{ 'chat-item--active': chat.id === selectedChatId },
+				]"
 				v-for="(chat, index) in filteredChats"
 				:key="index"
 				:chat="chat"
+				@click="selectChat(chat.id)"
 			/>
 		</ul>
 	</aside>
@@ -40,32 +45,32 @@ export default {
 	components: { ChatItem, SearchInput },
 	props: {
 		collapsed: Boolean,
+		chats: Array,
+		selectedChatId: Number,
 	},
 	setup(props, { emit }) {
-		const chats = ref([
-			{ name: 'Чат 1', lastMessage: 'Чат был обновлен' },
-			{ name: 'Чат 2', lastMessage: 'Ок, увидимся позже' },
-		])
-
 		const searchQuery = ref('')
+
 		const filteredChats = computed(() => {
-			if (!searchQuery.value) {
-				return chats.value
-			}
-			return chats.value.filter(chat =>
+			if (!searchQuery.value.trim()) return props.chats
+			return props.chats.filter(chat =>
 				chat.name.toLowerCase().includes(searchQuery.value.toLowerCase())
 			)
 		})
+
+		const selectChat = chatId => {
+			emit('selectChat', chatId)
+		}
 
 		const toggleSidebar = () => {
 			emit('toggleChatPanel')
 		}
 
 		return {
-			chats,
 			searchQuery,
 			filteredChats,
 			toggleSidebar,
+			selectChat,
 		}
 	},
 }

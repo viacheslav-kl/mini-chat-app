@@ -1,13 +1,14 @@
 <template>
-	<li class="sidebar__item chat-item">
+	<li @click="selectChat">
 		<div class="chat-item__avatar">
-			<img src="/src/assets/images/Avatar-test.png" alt="" />
+			<img :src="chat.avatar" alt="" />
 		</div>
 		<div class="chat-item__content">
 			<div class="chat-item__header">
 				<span class="chat-item__name"
-					>Чат 1
+					>{{ chat.name }}
 					<svg
+						v-if="chat.isVerifyPerson"
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -23,20 +24,33 @@
 							fill="white"
 						/></svg
 				></span>
-				<span class="chat-item__time">19:48</span>
+				<span class="chat-item__time">{{ chat.lastMessageTime }}</span>
 			</div>
 			<div class="chat-item__body">
-				<span class="chat-item__message">Чат был обновлен</span>
-				<span class="chat-item__new-messages"> 1 </span>
+				<span class="chat-item__message">{{ chat.lastMessage }}</span>
+				<span v-if="chat.newMessageCount" class="chat-item__new-messages">
+					{{ chat.newMessageCount }}
+				</span>
 			</div>
 		</div>
 	</li>
 </template>
 
-<script setup>
-const props = defineProps({
-	chat: Object,
-})
+<script>
+export default {
+	props: {
+		chat: Object,
+		isActive: Boolean,
+		selectedChatId: {
+			type: Number,
+		},
+	},
+	methods: {
+		selectChat() {
+			this.$emit('click', this.chat.id)
+		},
+	},
+}
 </script>
 
 <style scoped lang="scss"></style>

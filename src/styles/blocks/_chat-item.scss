@@ -10,6 +10,15 @@
 		background-color: var(--color-gray);
 	}
 
+	@include mobile {
+		padding: 12px 8px;
+		justify-content: center;
+	}
+
+	&--active {
+		background-color: var(--color-gray);
+	}
+
 	&__avatar {
 		@include square(48px);
 		flex-shrink: 0;
